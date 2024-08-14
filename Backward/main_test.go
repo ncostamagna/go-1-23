@@ -7,7 +7,7 @@ import (
 
 var s []string
 
-func init(){
+func init() {
 	i := 0
 
 	for {
@@ -15,11 +15,11 @@ func init(){
 		if i > 100000 {
 			break
 		}
-		if i % 4 == 0 {
+		if i%4 == 0 {
 			s = append(s, "a")
-		}else if i % 5 == 0 {
+		} else if i%5 == 0 {
 			s = append(s, "b")
-		}else{
+		} else {
 			s = append(s, "c")
 		}
 		i++
@@ -31,10 +31,10 @@ func init(){
 // GOEXPERIMENT=rangefunc go test -bench=.
 func Backward[E comparable](s []E, v E) func(func(int, E) bool) {
 	return func(yield func(int, E) bool) {
-		for i := len(s)-1; i >= 0; i-- {
+		for i := len(s) - 1; i >= 0; i-- {
 			//fmt.Println(yield)
 			//fmt.Println(i, s[i])
-			if (s[i] != v) {
+			if s[i] != v {
 				continue
 			}
 			// if we add i+3 for 3 elements, we'll see 3, 4 and 5 indexes
@@ -47,7 +47,7 @@ func Backward[E comparable](s []E, v E) func(func(int, E) bool) {
 	}
 }
 
-func main(){
+func main() {
 
 	s := []string{"a", "b", "c"}
 	//fmt.Print(Backward(s))
@@ -59,26 +59,24 @@ func main(){
 
 }
 
-
-
 func BenchmarkBackward(b *testing.B) {
 	var n []string
-    for i := 0; i < b.N; i++ {
-        for _, el := range Backward(s, "b") {
+	for i := 0; i < b.N; i++ {
+		for _, el := range Backward(s, "b") {
 			n = append(n, el)
 		}
-    }
+	}
 }
 
 func BenchmarkNormal(b *testing.B) {
 	var n []string
-    for i := 0; i < b.N; i++ {
-        for _, el := range s {
+	for i := 0; i < b.N; i++ {
+		for _, el := range s {
 			if el == "b" {
 				n = append(n, el)
 			}
 		}
-    }
+	}
 }
 
 // result: more or less the sema, there aren't difference between both

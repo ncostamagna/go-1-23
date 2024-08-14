@@ -1,8 +1,8 @@
 package main
 
 import (
-	"unique"
 	"fmt"
+	"unique"
 )
 
 type testStruct struct {
@@ -12,8 +12,8 @@ type testStruct struct {
 
 func main() {
 
-	v1 := testStruct{ 12.2, "test1" }
-	v2 := testStruct{ 12.2, "test1" }
+	v1 := testStruct{12.2, "test1"}
+	v2 := testStruct{12.2, "test1"}
 
 	r1 := unique.Make(v1)
 	r2 := unique.Make("v2")

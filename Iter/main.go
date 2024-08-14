@@ -7,7 +7,7 @@ import (
 
 func Backward[E any](s []E) iter.Seq[E] {
 	return func(yield func(E) bool) {
-		for i := len(s)-1; i >= 0; i-- {
+		for i := len(s) - 1; i >= 0; i-- {
 			// if we add i+3 for 3 elements, we'll see 3, 4 and 5 indexes
 			if !yield(s[i]) {
 				// Where clean-up code goes
@@ -19,7 +19,7 @@ func Backward[E any](s []E) iter.Seq[E] {
 
 func Backward2[E comparable](s []E, v E) iter.Seq2[int, E] {
 	return func(yield func(int, E) bool) {
-		for i := len(s)-1; i >= 0; i-- {
+		for i := len(s) - 1; i >= 0; i-- {
 			// if we add i+3 for 3 elements, we'll see 3, 4 and 5 indexes
 			if !yield(i, s[i]) {
 				// Where clean-up code goes
@@ -37,7 +37,7 @@ func PrintAll(seq []int) {
 
 func PrintAllPush(seq []int) {
 	n, s := iter.Pull(Backward(seq))
-	for  {
+	for {
 		v, b := n()
 		if !b {
 			s()
