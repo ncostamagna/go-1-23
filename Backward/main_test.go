@@ -82,3 +82,6 @@ func BenchmarkNormal(b *testing.B) {
 }
 
 // result: more or less the sema, there aren't difference between both
+
+// command to run the test with the benchmark
+// go test -bench=.
