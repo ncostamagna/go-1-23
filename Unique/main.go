@@ -16,7 +16,7 @@ func main() {
 	v2 := testStruct{ 12.2, "test1" }
 
 	r1 := unique.Make(v1)
-	r2 := unique.Make(v2)
+	r2 := unique.Make("v2")
 
 	fmt.Println(r1.Value(), r2.Value())
 	fmt.Println(r1.Value() == r2.Value())
