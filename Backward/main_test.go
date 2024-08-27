@@ -1,7 +1,6 @@
-package main
+package main_test
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -45,18 +44,6 @@ func Backward[E comparable](s []E, v E) func(func(int, E) bool) {
 			}
 		}
 	}
-}
-
-func main() {
-
-	s := []string{"a", "b", "c"}
-	//fmt.Print(Backward(s))
-	for i, el := range Backward(s, "b") {
-		// we will see the values that we executed in yield
-		// if we execute yield 2 times, we'll see each value 2 times
-		fmt.Println(i, el, "for")
-	}
-
 }
 
 func BenchmarkBackward(b *testing.B) {
