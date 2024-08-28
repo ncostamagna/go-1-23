@@ -5,7 +5,7 @@ import (
 	"slices"
 )
 
-func main(){
+func main() {
 
 	fmt.Printf("\n### All ###\n")
 	// func All[Slice ~[]E, E any](s Slice) iter.Seq2[int, E]
@@ -29,7 +29,6 @@ func main(){
 	s := slices.AppendSeq([]int{1, 2}, seq)
 	fmt.Println(s)
 
-
 	fmt.Printf("\n### Backward ###\n")
 	// func Backward[Slice ~[]E, E any](s Slice) iter.Seq2[int, E]
 	// Backward returns an iterator over index-value pairs in the slice, traversing it backward with descending indices.
@@ -40,10 +39,10 @@ func main(){
 
 	fmt.Printf("\n### Chunk ###\n")
 	// func Chunk[Slice ~[]E, E any](s Slice, n int) iter.Seq[Slice]
-	/* 
-	   Chunk returns an iterator over consecutive sub-slices of up to n elements of s. 
-	   All but the last sub-slice will have size n. All sub-slices are clipped to have no 
-	   capacity beyond the length. If s is empty, the sequence is empty: there is no empty 
+	/*
+	   Chunk returns an iterator over consecutive sub-slices of up to n elements of s.
+	   All but the last sub-slice will have size n. All sub-slices are clipped to have no
+	   capacity beyond the length. If s is empty, the sequence is empty: there is no empty
 	   slice in the sequence. Chunk panics if n is less than 1.
 	*/
 
@@ -83,11 +82,11 @@ func main(){
 	fmt.Printf("\n### Repeat ###\n")
 	// func Repeat[S ~[]E, E any](x S, count int) S
 	/*
-		Repeat returns a new slice that repeats the provided slice the given number of times. 
-		The result has length and capacity (len(x) * count). The result is never nil. 
+		Repeat returns a new slice that repeats the provided slice the given number of times.
+		The result has length and capacity (len(x) * count). The result is never nil.
 		Repeat panics if count is negative or if the result of (len(x) * count) overflows.
 	*/
-	numbers := []int{0, 1, 2, 3} 
+	numbers := []int{0, 1, 2, 3}
 	fmt.Println(slices.Repeat(numbers, 2))
 
 	fmt.Printf("\n### Sorted ###\n")

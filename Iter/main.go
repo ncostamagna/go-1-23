@@ -17,7 +17,7 @@ func Backward[E any](s []E) iter.Seq[E] {
 	}
 }
 
-func Backward2[E comparable](s []E, v E) iter.Seq2[int, E] {
+func Backward2[E any](s []E) iter.Seq2[int, E] {
 	return func(yield func(int, E) bool) {
 		for i := len(s) - 1; i >= 0; i-- {
 			// if we add i+3 for 3 elements, we'll see 3, 4 and 5 indexes
@@ -47,15 +47,29 @@ func PrintAllPush(seq []int) {
 	}
 }
 
+func PrintAllPush2(seq []int) {
+	n, s := iter.Pull2(Backward2(seq))
+	for {
+		k, v, b := n()
+		if !b {
+			s()
+			break
+		}
+		fmt.Println(k, v, b)
+	}
+}
+
 func PrintAll2(seq []int) {
-	for _, v := range Backward2(seq, 2) {
+	for _, v := range Backward2(seq) {
 		fmt.Println(v)
 	}
 }
 
 func main() {
-	v := []int{1, 2, 3, 4, 5}
+	v := []int{3, 2, 2, 8, 5}
 	PrintAll(v)
 
 	PrintAllPush(v)
+
+	PrintAllPush2(v)
 }
